@@ -9,6 +9,7 @@ def UserEdit(request):
 
     UserLib.SetUserData(request, {'Username': 'Pati', 'Sex': 'Woman', 'SexWant': 'Man'})
 
+    print(UserLib.GetUserData(request))
 
     newvar = UserData.objects.get(Username = "Pati")
 
