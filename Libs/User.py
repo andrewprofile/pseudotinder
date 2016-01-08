@@ -32,5 +32,4 @@ class UserLib:
 
     def SetUserData(self, data):
         UserData.objects.filter(Username="Patrycja").update(**data)
-        return 1
 

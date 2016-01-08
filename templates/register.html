@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form class="form-horizontal" name="LoginForm" action="/register/" method="post">
+        {% csrf_token %}
+            <input type="text" name="username" value placeholder="Wprowadź swój login" required>
+            <input type="password" name="password" value placeholder="Wprowadź swoje hasło" required>
+            <input type="email" name="email" value placeholder="Wprowadź swój email" required>
+            <input type="submit" value="Zarejestruj się"/>
+    </form>
+</body>
+</html>
