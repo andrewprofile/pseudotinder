@@ -8,7 +8,7 @@ class UserData(models.Model):
     Location = models.TextField(max_length=50, blank=True)
     Sex = models.TextField(max_length=50, blank=True)
     SexWant = models.TextField(max_length=50, blank=True)
-    RadiusWant = models.IntegerField(max_length=50, blank=True)
+    RadiusWant = models.IntegerField(blank=True)
 
 
 
