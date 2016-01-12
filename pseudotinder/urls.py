@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^UserLogin/$', 'App.views.UserLogin'),
     url(r'^UserLogout/$', 'App.views.UserLogout'),
     url(r'^UserEdit/$', 'App.views.UserEdit'),
+    url(r'^UserProfile/$', 'App.views.UserProfile'),
 ]
 

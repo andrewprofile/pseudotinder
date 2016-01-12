@@ -57,15 +57,15 @@ def UserEdit(request):
         location = request.POST['location']
         sex = request.POST['sex']
         sexwant = request.POST['sexwant']
-        rediuswant = request.POST['rediuswant']
+        radiuswant = request.POST['radiuswant']
 
-        UserLib.SetUserData(request, request.user.username,{'Name': 'name',
-                                                            'Description': 'description',
-                                                            'Photos': 'photos',
-                                                            'Location': 'location',
-                                                            'Sex': 'sex',
-                                                            'SexWant': 'sexwant',
-                                                            'RadiusWant': 'radiuswant' })
+        UserLib.SetUserData(request, request.user.username,{'Name': name,
+                                                            'Description': description,
+                                                            'Photos': photos,
+                                                            'Location': location,
+                                                            'Sex': sex,
+                                                            'SexWant': sexwant,
+                                                            'RadiusWant': radiuswant })
 
     return render_to_response('edit.html', { 'Name': 'Patrycja' }, context_instance=RequestContext(request))
 
@@ -77,3 +77,14 @@ def UserLogout(request):
         return HttpResponseRedirect('/UserLogin')
     else:
         return HttpResponseRedirect('/UserLogin')
+
+
+def UserProfile(request):
+    objects = UserLib()
+    name = objects.GetUserData(request.user.username, "Email")
+    location = objects.GetUserData(request.user.username, "Location")
+    sex = objects.GetUserData(request.user.username, "Sex")
+    sexwant = objects.GetUserData(request.user.username, "SexWant")
+    radiuswant = objects.GetUserData(request.user.username, "RadiusWant")
+    description  = objects.GetUserData(request.user.username, "Description")
+    return render_to_response('profile.html', {'Name':name}, context_instance = RequestContext(request))

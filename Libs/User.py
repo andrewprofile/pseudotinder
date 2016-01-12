@@ -18,10 +18,10 @@ class UserLib:
     # use:
     # You can use that for create or edit user
 
-    def GetUserData(self):
+    def GetUserData(self, user, item):
         query = UserData.objects.get(Username = user)
 
-        return query.Photos
+        return getattr(query,item)
 
 
 
