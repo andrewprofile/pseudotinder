@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form class="form-horizontal" name="LoginForm" action="/UserEdit/" method="post">
+        {% csrf_token %}
+            <input type="text" name="name" value placeholder="Imię" required>
+            <input type="text" name="description" value placeholder="Opis" required>
+            <input type="text" name="photos" value placeholder="Zdjecie" required>
+            <input type="text" name="location" value placeholder="Miejsce zamieszkania" required>
+            <input type="text" name="sex" value placeholder="Płeć" required>
+            <input type="text" name="sexwant" value placeholder="Poszukiwany/a" required>
+            <input type="text" name="radiuswant" value placeholder="Zakres poszukiwań" required>
+            <input type="submit" value="Zapisz"/>
+    </form>
+</body>
+</html>

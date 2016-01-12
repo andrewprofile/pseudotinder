@@ -5,12 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-    <form class="form-horizontal" name="LoginForm" action="/UserRegister/" method="post">
+    <form class="form-horizontal" name="LoginForm" action="/UserLogin/" method="post">
         {% csrf_token %}
             <input type="text" name="username" value placeholder="Wprowadź swój login" required>
             <input type="password" name="password" value placeholder="Wprowadź swoje hasło" required>
-            <input type="email" name="email" value placeholder="Wprowadź swój email" required>
-            <input type="submit" value="Zarejestruj się"/>
+            <input type="submit" value="Zaloguj się"/>
     </form>
 </body>
 </html>

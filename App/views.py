@@ -3,14 +3,24 @@ from django.template import RequestContext
 from App.models import UserData
 from Libs.User import UserLib
 from django.contrib.auth.models import User
-
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
 def UserLogin(request):
     if request.POST:
-        print("post")
-    return render_to_response('register.html', {}, context_instance=RequestContext(request))
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username = username, password = password)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/panel/')
+            else:
+                return HttpResponseRedirect('?error=LoginError')
+    return render_to_response('login.html', {}, context_instance=RequestContext(request))
 
 
-#GÓRE IGNORUJ, PATRZ NA USER REGISTER
 def UserRegister(request):
     if request.POST:
         username = request.POST['username']
@@ -28,9 +38,42 @@ def UserRegister(request):
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
 
+            UserLib.CreateUser(request, {'Username': username,
+                                         'Name': 'null',
+                                         'Descriptions': 'null',
+                                         'Photos': 'null',
+                                         'Location': 'null',
+                                         'Sex': 'null',
+                                         'SexWant': 'null',
+                                         'RadiusWant': 0 })
     return render_to_response('register.html', {}, context_instance=RequestContext(request))
 
 
 def UserEdit(request):
+    if request.POST:
+        name = request.POST['name']
+        description = request.POST['description']
+        photos = request.POST['photos']
+        location = request.POST['location']
+        sex = request.POST['sex']
+        sexwant = request.POST['sexwant']
+        rediuswant = request.POST['rediuswant']
 
-    return render_to_response('home.html', { 'Name': 'Patrycja' }, context_instance=RequestContext(request))
+        UserLib.SetUserData(request, request.user.username,{'Name': 'name',
+                                                            'Description': 'description',
+                                                            'Photos': 'photos',
+                                                            'Location': 'location',
+                                                            'Sex': 'sex',
+                                                            'SexWant': 'sexwant',
+                                                            'RadiusWant': 'radiuswant' })
+
+    return render_to_response('edit.html', { 'Name': 'Patrycja' }, context_instance=RequestContext(request))
+
+
+
+def UserLogout(request):
+    if request.user.is_authenticated():
+        logout(request)
+        return HttpResponseRedirect('/UserLogin')
+    else:
+        return HttpResponseRedirect('/UserLogin')

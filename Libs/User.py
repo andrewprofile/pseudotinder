@@ -19,7 +19,7 @@ class UserLib:
     # You can use that for create or edit user
 
     def GetUserData(self):
-        query = UserData.objects.get(Username = "Pati")
+        query = UserData.objects.get(Username = user)
 
         return query.Photos
 
@@ -31,5 +31,8 @@ class UserLib:
     # You can use that for create or edit user
 
     def SetUserData(self, data):
-        UserData.objects.filter(Username="Patrycja").update(**data)
+        UserData.objects.filter(Username= user).update(**data)
+
+    def CreateUser(self, data):
+        UserData.objects(Username = user).update(**data)
 
