@@ -15,9 +15,9 @@ def UserLogin(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/panel/')
+                return HttpResponseRedirect('/UserProfile/')
             else:
-                return HttpResponseRedirect('?error=LoginError')
+                return HttpResponseRedirect('/UserLogin')
     return render_to_response('login.html', {}, context_instance=RequestContext(request))
 
 
@@ -40,7 +40,7 @@ def UserRegister(request):
 
             UserLib.CreateUser(request, {'Username': username,
                                          'Name': 'null',
-                                         'Descriptions': 'null',
+                                         'Description': 'null',
                                          'Photos': 'null',
                                          'Location': 'null',
                                          'Sex': 'null',
@@ -81,7 +81,7 @@ def UserLogout(request):
 
 def UserProfile(request):
     objects = UserLib()
-    name = objects.GetUserData(request.user.username, "Email")
+    name = objects.GetUserData(request.user.username, "Name")
     location = objects.GetUserData(request.user.username, "Location")
     sex = objects.GetUserData(request.user.username, "Sex")
     sexwant = objects.GetUserData(request.user.username, "SexWant")

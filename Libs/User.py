@@ -33,7 +33,12 @@ class UserLib:
     def SetUserData(self, user, data):
         UserData.objects.filter(Username= user).update(**data)
 
+<<<<<<< HEAD
     def UserData.create(**data):
+=======
+    def CreateUser(self, data):
+        data = UserData.objects.create(**data)
+>>>>>>> c13ded9604589ed6ac8a2d9ab3416dce2e6240ff
         data.save()
 
 
