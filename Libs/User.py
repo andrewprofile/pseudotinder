@@ -34,7 +34,7 @@ class UserLib:
         UserData.objects.filter(Username= user).update(**data)
 
     def CreateUser(self, data):
-        data = UserData.objects(Username = user).create(**data)
+        data = UserData.objects.create(**data)
         data.save()
 
 
