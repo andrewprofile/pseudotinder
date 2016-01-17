@@ -30,9 +30,11 @@ class UserLib:
     # use:
     # You can use that for create or edit user
 
-    def SetUserData(self, data):
+    def SetUserData(self, user, data):
         UserData.objects.filter(Username= user).update(**data)
 
     def CreateUser(self, data):
-        UserData.objects(Username = user).update(**data)
+        data = UserData.objects(Username = user).create(**data)
+        data.save()
+
 
